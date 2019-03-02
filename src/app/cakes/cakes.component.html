@@ -6,15 +6,33 @@
   </ng-container>
 
   <ng-container matColumnDef="cake">
-    <th mat-header-cell *matHeaderCellDef> Kage </th>
+    <th mat-header-cell *matHeaderCellDef> Type </th>
     <td mat-cell *matCellDef="let element"> {{element.cake}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef> Dato </th>
-    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  <ng-container matColumnDef="timestamp">
+    <th mat-header-cell *matHeaderCellDef> Tidspunkt </th>
+    <td mat-cell *matCellDef="let element"> {{element.timestamp | date:'EEEE, \'den\' d. MMMM yyyy \'kl.\' H:mm'}} </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="['initials', 'cake', 'date']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['initials', 'cake', 'date'];"></tr>
+  <ng-container matColumnDef="countdown">
+    <th mat-header-cell *matHeaderCellDef> Nedtælling </th>
+    <td mat-cell *matCellDef="let element;"> <div *ngIf="element.timestamp < nowTime">Tak for kage.</div> <countdown *ngIf="element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!d!d $!h!t $!m!m $!s!s'}"></countdown> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef > Valg </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button (click)="openEditDialog(element);">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-button (click)="openDeleteDialog(element);">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['initials', 'cake', 'timestamp', 'countdown', 'options']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['initials', 'cake', 'timestamp', 'countdown', 'options'];"></tr>
 </table>
+

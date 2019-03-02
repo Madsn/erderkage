@@ -1,17 +1,20 @@
-<h2 mat-dialog-title>Jeg giver kage</h2>
 <form #f="ngForm" (ngSubmit)="onSave(f.value);">
   <mat-dialog-content>
-    <input hidden #id="ngModel" type="hidden" name="id" id="id" [ngModel]="data.cake.id" *ngIf="!data.isNew">
+    <input hidden #_id="ngModel" type="hidden" name="_id" id="_id" [ngModel]="data.cake._id" *ngIf="!data.isNew">
     <mat-form-field>
       <input matInput required #initials="ngModel" type="text" placeholder="Initialer" name="initials" id="initials" [ngModel]="data.cake.initials">
     </mat-form-field>
     <br>
     <mat-form-field>
-      <input matInput required #cake="ngModel" type="text" placeholder="Kage" name="cake" id="cake" [ngModel]="data.cake.cake">
+      <input matInput required #cake="ngModel" type="text" placeholder="Type" name="cake" id="cake" [ngModel]="data.cake.cake">
     </mat-form-field>
     <br>
     <mat-form-field>
-      <input matInput required #date="ngModel" type="text" placeholder="Dato" name="date" id="date" [ngModel]="data.cake.date">
+      <input matInput required #date="ngModel" type="date" placeholder="Dato" name="date" id="date" [ngModel]="data.cake.date">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput required #time="ngModel" type="time" placeholder="Tid" name="time" id="time" [ngModel]="data.cake.time">
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>

@@ -1,5 +1,7 @@
+import { registerLocaleData } from '@angular/common';
+import localeDa from '@angular/common/locales/da';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -8,6 +10,7 @@ import { MainComponent } from './main/main.component';
 import { CakeDialogComponent } from './cake-dialog/cake-dialog.component';
 import { CakesComponent } from './cakes/cakes.component';
 
+import { CountdownModule } from 'ngx-countdown';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MatMomentDateModule} from '@angular/material-moment-adapter';
@@ -24,6 +27,8 @@ import {
   MatToolbarModule
 } from '@angular/material';
 
+registerLocaleData(localeDa, 'da');
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -38,6 +43,7 @@ import {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    CountdownModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
@@ -52,6 +58,7 @@ import {
     MatToolbarModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'da' },
     {provide: MAT_DATE_LOCALE, useValue: 'da-DK'},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}

@@ -10,13 +10,13 @@ import {Cake} from '../cakes/cakes.component';
 })
 export class CakeDialogComponent {
 
-  confirmBtn = 'Tilføj Kage';
+  confirmBtn = 'Jeg Giver Kage';
 
   constructor(public dialogRef: MatDialogRef<CakeDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private apiService: ApiService) {
     if (!data.isNew) {
-      this.confirmBtn = 'Gem Kage';
+      this.confirmBtn = 'Opdater Min Kage';
     }
   }
 

@@ -31,10 +31,8 @@ export class ApiService {
   }
 
   createCake(cake: Cake) {
-    console.log('createCake(): ' + cake.initials);
-    console.log('createCake(): ' + cake.cake);
-    console.log('createCake(): ' + cake.date);
     this.loadingSource.next(true);
+    cake.timestamp = new Date(cake.date + 'T' + cake.time + ':00+01:00').getTime().toString();
     return this.http.post<Cake>(`${this.url}/cakes`, cake)
       .subscribe(
         data => this.createCakeSource.next(data),
@@ -44,6 +42,7 @@ export class ApiService {
 
   updateCake(cake: Cake) {
     this.loadingSource.next(true);
+    cake.timestamp = new Date(cake.date + 'T' + cake.time + ':00+01:00').getTime().toString();
     return this.http.put<Cake>(`${this.url}/cakes`, cake)
       .subscribe(
         data => this.updateCakeSource.next(data),
@@ -53,7 +52,7 @@ export class ApiService {
 
   deleteCake(cake: Cake) {
     this.loadingSource.next(true);
-    return this.http.delete<Cake>(`${this.url}/cakes/${cake.id}`)
+    return this.http.delete<Cake>(`${this.url}/cakes/${cake._id}`)
       .subscribe(
         data => this.deleteCakeSource.next(data),
         err => console.log(err)

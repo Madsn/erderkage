@@ -5,6 +5,7 @@ const CakeSchema = new Schema({
   initials: {
     type: String,
     required: true,
+    uppercase: true,
     trim: true
   },
   cake: {
@@ -13,6 +14,16 @@ const CakeSchema = new Schema({
     trim: true
   },
   date: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  time: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  timestamp: {
     type: String,
     required: true,
     trim: true

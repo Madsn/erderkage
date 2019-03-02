@@ -2,6 +2,8 @@ import {Component, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {ApiService} from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
+import {CakeDialogComponent} from '../cake-dialog/cake-dialog.component';
+import {MatDialog} from '@angular/material';
 
 
 @Component({
@@ -17,13 +19,29 @@ export class CakesComponent implements OnDestroy {
 
   cakes: Cakes;
   dataSource: CakesDataSource;
+  nowTime = new Date().getTime();
 
-  constructor(public apiService: ApiService) {
+  constructor(
+    public apiService: ApiService,
+    public cakeDialog: MatDialog,
+  ) {
     this.cakes = new Cakes(this.apiService);
     this.dataSource = new CakesDataSource(this.cakes);
     this.createCakeSubscription = this.apiService.onCreateCake$.subscribe(cake => this.cakes.addCake(cake));
     this.updateCakeSubscription = this.apiService.onUpdateCake$.subscribe(cake => this.cakes.editCake(cake));
     this.deleteCakeSubscription = this.apiService.onDeleteCake$.subscribe(cake => this.cakes.removeCake(cake));
+  }
+
+  openCakeDialog(): void {
+    const dialogRef = this.cakeDialog.open(CakeDialogComponent, {data: {isNew: true, cake: new Cake()}});
+  }
+
+  openEditDialog(cake: Cake) {
+    this.cakeDialog.open(CakeDialogComponent, {data: {isNew: false, cake}});
+  }
+
+  openDeleteDialog(cake: Cake) {
+    this.apiService.deleteCake(cake);
   }
 
   ngOnDestroy(): void {
@@ -34,10 +52,12 @@ export class CakesComponent implements OnDestroy {
 }
 
 export class Cake {
-  id?: string;
+  _id?: string;
   initials: string;
   cake: string;
   date: string;
+  time: string;
+  timestamp?: string;
 }
 
 export class Cakes {
@@ -70,7 +90,7 @@ export class Cakes {
   removeCake(cake: Cake) {
     let index = this.data.indexOf(cake);
     this.data.findIndex((obj, i) => {
-      if (obj.id === cake.id) {
+      if (obj._id === cake._id) {
         index = i;
         return true;
       }

@@ -5,7 +5,6 @@ const timeout = process.env.API_DELAY;
 function createCake (req, res) {
   setTimeout(() => {
     const cake = new Cake(req.body);
-    console.log((cake));
     cake.save()
       .then((cake) => res.status(201).json(cake))
       .catch((err) => res.status(400).send())

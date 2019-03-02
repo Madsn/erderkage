@@ -15,7 +15,7 @@ export class MainComponent {
   loadingSubscription: Subscription;
 
   loading = false;
-  title = 'Er der kage nu?';
+  title = 'Radar afdelingens vigtige kage plan';
 
   constructor(
     public cakeDialog: MatDialog,
