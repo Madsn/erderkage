@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Jeg giver kage</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput required placeholder="Initialer">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [matDatepicker]="cakeDatepicker" required placeholder="Dato">
+    <mat-datepicker-toggle matSuffix [for]="cakeDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker #cakeDatepicker ></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <select matNativeControl required placeholder="Tidspunkt">
+      <option value="0900">09:00</option>
+      <option value="0915">09:15</option>
+      <option value="0930">09:30</option>
+      <option value="0945">09:45</option>
+      <option value="1000" selected="selected">10:00</option>
+      <option value="1015">10:15</option>
+      <option value="1030">10:30</option>
+      <option value="1045">10:45</option>
+      <option value="1100">11:00</option>
+      <option value="1115">11:15</option>
+      <option value="1130">11:30</option>
+      <option value="1145">11:45</option>
+      <option value="1200">12:00</option>
+      <option value="1215">12:15</option>
+      <option value="1230">12:30</option>
+      <option value="1245">12:45</option>
+      <option value="1300">13:00</option>
+      <option value="1315">13:15</option>
+      <option value="1330">13:30</option>
+      <option value="1345">13:45</option>
+      <option value="1400">14:00</option>
+      <option value="1415">14:15</option>
+      <option value="1430">14:30</option>
+      <option value="1445">14:45</option>
+    </select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No Thanks</button>
+  <button mat-button cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

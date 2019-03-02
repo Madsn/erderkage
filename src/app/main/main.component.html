@@ -1,0 +1,15 @@
+<div class="site">
+  <mat-toolbar color="primary" role="header">
+    <span>{{title}}</span>
+    <span class="flex-fill"></span>
+    <button mat-mini-fab (click)="openCakeDialog()"><mat-icon>add</mat-icon></button>
+  </mat-toolbar>
+
+  <div class="site-content">
+    <app-cakes></app-cakes>
+  </div>
+
+  <ng-container *ngIf="loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-container>
+</div>
