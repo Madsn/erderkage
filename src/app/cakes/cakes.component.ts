@@ -1,9 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {ApiService} from '../api.service';
-import { DataSource } from '@angular/cdk/collections';
+import {DataSource} from '@angular/cdk/collections';
 import {CakeDialogComponent} from '../cake-dialog/cake-dialog.component';
 import {MatDialog} from '@angular/material';
+import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class CakesComponent implements OnDestroy {
   constructor(
     public apiService: ApiService,
     public cakeDialog: MatDialog,
+    public deleteDialog: MatDialog
   ) {
     this.cakes = new Cakes(this.apiService);
     this.dataSource = new CakesDataSource(this.cakes);
@@ -32,16 +34,18 @@ export class CakesComponent implements OnDestroy {
     this.deleteCakeSubscription = this.apiService.onDeleteCake$.subscribe(cake => this.cakes.removeCake(cake));
   }
 
-  openCakeDialog(): void {
-    const dialogRef = this.cakeDialog.open(CakeDialogComponent, {data: {isNew: true, cake: new Cake()}});
-  }
-
   openEditDialog(cake: Cake) {
     this.cakeDialog.open(CakeDialogComponent, {data: {isNew: false, cake}});
   }
 
   openDeleteDialog(cake: Cake) {
-    this.apiService.deleteCake(cake);
+    const dialogRef = this.deleteDialog.open(DeleteDialogComponent, {data: {name: cake.cake}});
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.apiService.deleteCake(cake);
+        }
+      });
   }
 
   ngOnDestroy(): void {

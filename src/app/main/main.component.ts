@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CakeDialogComponent } from '../cake-dialog/cake-dialog.component';
 import {ApiService} from '../api.service';
@@ -15,7 +15,7 @@ export class MainComponent {
   loadingSubscription: Subscription;
 
   loading = false;
-  title = 'Radar afdelingens vigtige kage plan';
+  title = 'Radar afdelingens meget vigtige kage plan';
 
   constructor(
     public cakeDialog: MatDialog,

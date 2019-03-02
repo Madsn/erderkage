@@ -10,22 +10,18 @@ import { MainComponent } from './main/main.component';
 import { CakeDialogComponent } from './cake-dialog/cake-dialog.component';
 import { CakesComponent } from './cakes/cakes.component';
 
-import { CountdownModule } from 'ngx-countdown';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MatMomentDateModule} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {CountdownModule} from 'ngx-countdown';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatIconModule,
   MatButtonModule,
-  MatCardModule,
   MatDialogModule,
   MatInputModule,
   MatProgressBarModule,
-  MatSnackBarModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 registerLocaleData(localeDa, 'da');
 
@@ -33,10 +29,12 @@ registerLocaleData(localeDa, 'da');
   declarations: [
     MainComponent,
     CakeDialogComponent,
-    CakesComponent
+    CakesComponent,
+    DeleteDialogComponent
   ],
   entryComponents: [
-    CakeDialogComponent
+    CakeDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,22 +44,15 @@ registerLocaleData(localeDa, 'da');
     CountdownModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatMomentDateModule,
     MatDialogModule,
     MatIconModule,
     MatInputModule,
     MatProgressBarModule,
-    MatSnackBarModule,
     MatTableModule,
     MatToolbarModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'da' },
-    {provide: MAT_DATE_LOCALE, useValue: 'da-DK'},
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}
   ],
   bootstrap: [MainComponent]
 })
