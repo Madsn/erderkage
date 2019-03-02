@@ -1,15 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
+import { CakeDialogComponent } from './cake-dialog/cake-dialog.component';
+import { CakesComponent } from './cakes/cakes.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MatMomentDateModule} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatCardModule,
@@ -20,8 +23,6 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import { CakeDialogComponent } from './cake-dialog/cake-dialog.component';
-import { CakesComponent } from './cakes/cakes.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CakesComponent } from './cakes/cakes.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,

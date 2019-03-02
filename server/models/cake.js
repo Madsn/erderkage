@@ -10,11 +10,15 @@ const CakeSchema = new Schema({
   cake: {
     type: String,
     required: true,
-    trim: true,
+    trim: true
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
+    trim: true
+  },
+  created: {
+    type: Date,
     default: Date.now
   }
 });
