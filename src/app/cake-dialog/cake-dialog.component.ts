@@ -17,6 +17,9 @@ export class CakeDialogComponent {
               private apiService: ApiService) {
     if (!data.isNew) {
       this.confirmBtn = 'Opdater Min Kage';
+    } else {
+      data.cake.date = new Date().toISOString().substring(0, 10);
+      data.cake.time = '10:00';
     }
   }
 
