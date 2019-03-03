@@ -13,6 +13,9 @@ import { CakesComponent } from './cakes/cakes.component';
 import {CountdownModule} from 'ngx-countdown';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatSnackBarModule,
+  MatMenuModule,
+  MatSortModule,
   MatIconModule,
   MatButtonModule,
   MatDialogModule,
@@ -43,6 +46,9 @@ registerLocaleData(localeDa, 'da');
     HttpClientModule,
     CountdownModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatSortModule,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,

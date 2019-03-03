@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, HostListener} from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {ApiService} from '../api.service';
 import {DataSource} from '@angular/cdk/collections';
@@ -7,20 +7,13 @@ import {MatDialog} from '@angular/material';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
 
+
 @Component({
   selector: 'app-cakes',
   templateUrl: './cakes.component.html',
   styleUrls: ['./cakes.component.css']
 })
-export class CakesComponent implements OnDestroy {
-
-  createCakeSubscription: Subscription;
-  updateCakeSubscription: Subscription;
-  deleteCakeSubscription: Subscription;
-
-  cakes: Cakes;
-  dataSource: CakesDataSource;
-  nowTime = new Date().getTime();
+export class CakesComponent implements OnInit, OnDestroy {
 
   constructor(
     public apiService: ApiService,
@@ -32,6 +25,40 @@ export class CakesComponent implements OnDestroy {
     this.createCakeSubscription = this.apiService.onCreateCake$.subscribe(cake => this.cakes.addCake(cake));
     this.updateCakeSubscription = this.apiService.onUpdateCake$.subscribe(cake => this.cakes.editCake(cake));
     this.deleteCakeSubscription = this.apiService.onDeleteCake$.subscribe(cake => this.cakes.removeCake(cake));
+  }
+
+  public innerWidth: any;
+
+  columnDefinitions = [
+    { def: 'initials', showMobile: true },
+    { def: 'cake', showMobile: true },
+    { def: 'timestamp', showMobile: false },
+    { def: 'countdown', showMobile: true },
+    { def: 'options', showMobile: true }
+  ];
+
+  createCakeSubscription: Subscription;
+  updateCakeSubscription: Subscription;
+  deleteCakeSubscription: Subscription;
+
+  cakes: Cakes;
+  dataSource: CakesDataSource;
+  nowTime = new Date().getTime();
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+  }
+
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
+  }
+
+  getDisplayedColumns(): string[] {
+    const isMobile = this.innerWidth <= 736;
+    return this.columnDefinitions
+      .filter(cd => !isMobile || cd.showMobile)
+      .map(cd => cd.def);
   }
 
   openEditDialog(cake: Cake) {
