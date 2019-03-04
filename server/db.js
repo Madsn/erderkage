@@ -4,5 +4,5 @@ mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  db.dropDatabase();
+//  db.dropDatabase();
 });

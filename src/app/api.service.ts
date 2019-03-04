@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {Subject} from 'rxjs';
 import {Cake} from './cakes/cakes.component';
+import {Highscore} from './highscore-dialog/highscore-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,11 @@ export class ApiService {
         data => this.deleteCakeSource.next(data),
         err => console.log(err)
       );
+  }
+
+  getHighscores() {
+    this.loadingSource.next(true);
+    return this.http.get<Highscore[]>(`${this.url}/highscores`);
   }
 
   loading(bool: boolean) {

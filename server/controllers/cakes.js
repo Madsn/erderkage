@@ -36,9 +36,18 @@ function deleteCake (req, res) {
   }, timeout)
 }
 
+function getHighscores (req, res) {
+  setTimeout(() => {
+    Cake.aggregate([ {$group : { _id : '$initials', count : {$sum : 1}}} ])
+      .then((count) => res.status(200).json(count))
+      .catch((err) => res.status(404).send())
+  }, timeout)
+}
+
 module.exports = {
   createCake,
   readCakes,
   updateCake,
-  deleteCake
+  deleteCake,
+  getHighscores
 };

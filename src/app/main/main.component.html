@@ -2,6 +2,7 @@
   <mat-toolbar color="primary" role="header">
     <span>{{title | uppercase}}</span>
     <span class="flex-fill"></span>
+    <button mat-mini-fab color="primary" (click)="openHighscoreDialog()"><mat-icon>list</mat-icon></button>
     <button mat-mini-fab (click)="openCakeDialog()"><mat-icon>add</mat-icon></button>
   </mat-toolbar>
 
@@ -9,7 +10,12 @@
     <app-cakes></app-cakes>
   </div>
 
+  <div class="footer" align="right">
+    <span style="color:gray;padding:5px">commit: {{gitHash}} </span>
+  </div>
+
   <ng-container *ngIf="loading">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </ng-container>
+
 </div>

@@ -25,6 +25,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { HighscoreDialogComponent } from './highscore-dialog/highscore-dialog.component';
 
 registerLocaleData(localeDa, 'da');
 
@@ -33,11 +34,13 @@ registerLocaleData(localeDa, 'da');
     MainComponent,
     CakeDialogComponent,
     CakesComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    HighscoreDialogComponent
   ],
   entryComponents: [
     CakeDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    HighscoreDialogComponent
   ],
   imports: [
     BrowserModule,

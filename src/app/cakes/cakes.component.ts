@@ -6,8 +6,6 @@ import {CakeDialogComponent} from '../cake-dialog/cake-dialog.component';
 import {MatDialog} from '@angular/material';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
-
-
 @Component({
   selector: 'app-cakes',
   templateUrl: './cakes.component.html',
