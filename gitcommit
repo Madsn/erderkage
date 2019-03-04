@@ -1,0 +1,17 @@
+#!/bin/bash
+cd ~/Projects/erderkage
+read -p "Source commit description: " desc1
+read -p "Production commit description: " desc2
+git add . && \
+git add -u && \
+git commit -m "$desc1" && \
+git push origin master
+node git-version.js
+ng build --prod
+cd ~/Projects/erderkagenu
+rm public/*
+mv ~/Projects/erderkage/dist/erderkage/* ~/Projects/erderkagenu/public/
+git add . && \
+git add -u && \
+git commit -m "$desc2" && \
+git push heroku master
