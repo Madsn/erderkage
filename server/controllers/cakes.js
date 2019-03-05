@@ -14,7 +14,7 @@ function createCake (req, res) {
 
 function readCakes (req, res) {
   setTimeout(() => {
-    Cake.find({})
+    Cake.find({}).sort({'timestamp': 'desc'})
       .then((cakes) => res.status(200).json(cakes))
       .catch((err) => res.status(404).send())
   }, timeout)

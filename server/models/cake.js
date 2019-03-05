@@ -14,7 +14,7 @@ const CakeSchema = new Schema({
     trim: true
   },
   date: {
-    type: String,
+    type: Date,
     required: true,
     trim: true
   },

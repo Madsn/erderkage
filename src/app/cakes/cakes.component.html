@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <mat-menu #cakeMenu="matMenu">
     <ng-template matMenuContent let-element="element">
@@ -7,8 +7,8 @@
     </ng-template>
   </mat-menu>
 
-  <ng-container matColumnDef="initials" sticky>
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Initialer </th>
+  <ng-container matColumnDef="initials">
+    <th mat-header-cell *matHeaderCellDef> Initialer </th>
     <td mat-cell *matCellDef="let element"> {{element.initials}} </td>
   </ng-container>
 
@@ -24,12 +24,12 @@
 
   <ng-container matColumnDef="countdown">
     <th mat-header-cell *matHeaderCellDef> Nedtælling </th>
-    <td mat-cell *matCellDef="let element;"> <div *ngIf="element.timestamp < nowTime">Tak for kage.</div> <countdown *ngIf="element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!d!:$!h!:$!m!:$!s!'}"></countdown> </td>
+    <td mat-cell *matCellDef="let element;"><div *ngIf="element.timestamp < nowTime">Tak for kage.</div><countdown *ngIf="element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!d!:$!h!:$!m!:$!s!'}"></countdown></td>
   </ng-container>
 
-  <ng-container matColumnDef="options" stickyEnd>
-    <th mat-header-cell *matHeaderCellDef > &nbsp; </th>
-    <td mat-cell *matCellDef="let element">
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef align="right"> &nbsp; </th>
+    <td mat-cell *matCellDef="let element" align="right">
       <button mat-icon-button [matMenuTriggerFor]="cakeMenu" [matMenuTriggerData]="{element: element}"><mat-icon>more_vert</mat-icon></button>
     </td>
   </ng-container>
