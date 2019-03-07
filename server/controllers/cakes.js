@@ -9,7 +9,6 @@ function createCake (req, res) {
       .then((cake) => res.status(201).json(cake))
       .catch((err) => res.status(400).send())
   }, timeout)
-
 }
 
 function readCakes (req, res) {
@@ -44,10 +43,19 @@ function getHighscores (req, res) {
   }, timeout)
 }
 
+function getUpcoming (req, res) {
+  setTimeout(() => {
+    Cake.find({"date": {"$gte": new Date()}}).sort({'timestamp': 'asc'})
+      .then((cakes) => res.status(200).json(cakes))
+      .catch((err) => res.status(404).send())
+  }, timeout)
+}
+
 module.exports = {
   createCake,
   readCakes,
   updateCake,
   deleteCake,
-  getHighscores
+  getHighscores,
+  getUpcoming
 };
