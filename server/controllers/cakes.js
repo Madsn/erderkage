@@ -45,7 +45,7 @@ function getHighscores (req, res) {
 
 function getUpcoming (req, res) {
   setTimeout(() => {
-    Cake.find({"date": {"$gte": new Date()}}).sort({'timestamp': 'asc'})
+    Cake.find({"date": {"$gte": new Date().setTime(0)}}).sort({'timestamp': 'asc'})
       .then((cakes) => res.status(200).json(cakes))
       .catch((err) => res.status(404).send())
   }, timeout)
