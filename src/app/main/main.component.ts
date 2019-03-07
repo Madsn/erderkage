@@ -17,7 +17,7 @@ export class MainComponent {
   loadingSubscription: Subscription;
 
   loading = false;
-  title = 'Radars kage plan';
+  title = 'Radar SW kage plan';
   gitHash = '';
   gitTag = '';
 
