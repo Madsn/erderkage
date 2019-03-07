@@ -1,10 +1,25 @@
 const Cake = require('../models/Cake');
+const ical = require('../controllers/ical');
+const moment = require('moment');
 
 const timeout = process.env.API_DELAY;
 
 function createCake (req, res) {
   setTimeout(() => {
     const cake = new Cake(req.body);
+    ical.cal.createEvent({
+      start: moment(cake.date),
+      end: moment(cake.date).add(15, 'minutes'),
+      timestamp: moment(cake.date),
+      summary: cake.cake + ' (' + cake.initials + ')',
+      description: cake.initials + ' giver ' + cake.cake + ' // erderkage.nu',
+      organizer: cake.initials + ' <' + cake.initials + '@terma.com>',
+      busystatus: 'free',
+      alarms: [
+        {type: 'display', trigger: 300},
+        {type: 'audio', trigger: 300}
+      ]
+    });
     cake.save()
       .then((cake) => res.status(201).json(cake))
       .catch((err) => res.status(400).send())
