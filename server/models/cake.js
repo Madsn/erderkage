@@ -13,24 +13,9 @@ const CakeSchema = new Schema({
     required: true,
     trim: true
   },
-  date: {
-    type: Date,
-    required: true,
-    trim: true
-  },
-  time: {
-    type: String,
-    required: true,
-    trim: true
-  },
   timestamp: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  created: {
-    type: Date,
-    default: Date.now
+    type: Number,
+    required: true
   },
   claps: {
     type: Number,
