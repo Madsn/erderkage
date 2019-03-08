@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MomentModule } from 'ngx-moment';
+import 'moment/locale/da';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
 import { CakeDialogComponent } from './cake-dialog/cake-dialog.component';
@@ -63,7 +64,8 @@ registerLocaleData(localeDa, 'da');
     MatInputModule,
     MatProgressBarModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MomentModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'da' },

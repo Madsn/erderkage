@@ -33,7 +33,6 @@ export class ApiService {
   createCake(cake: Cake) {
     this.loadingSource.next(true);
     cake.timestamp = new Date(cake.date + 'T' + cake.time + ':00+01:00').getTime().toString();
-    cake.date = new Date(cake.date + 'T' + cake.time + ':00+01:00').getTime().toString();
     return this.http.post<Cake>(`${this.url}/cakes`, cake)
       .subscribe(
         data => this.createCakeSource.next(data),
@@ -43,9 +42,6 @@ export class ApiService {
 
   updateCake(cake: Cake) {
     this.loadingSource.next(true);
-    // TODO - only save unix time in mongo
-    // cake.timestamp = new Date(cake.date + 'T' + cake.time + ':00+01:00').getTime().toString();
-    // cake.date = new Date(cake.date + 'T' + cake.time + ':00+01:00').getTime().toString();
     return this.http.put<Cake>(`${this.url}/cakes`, cake)
       .subscribe(
         data => this.updateCakeSource.next(data),

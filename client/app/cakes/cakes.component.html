@@ -19,12 +19,16 @@
 
   <ng-container matColumnDef="timestamp">
     <th mat-header-cell *matHeaderCellDef> Tidspunkt </th>
-    <td mat-cell *matCellDef="let element"> {{element.timestamp | date:'EE d/M \'@\' H.mm'}} </td>
+    <td mat-cell *matCellDef="let element">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amDateFormat:'llll' }} </td>
   </ng-container>
 
   <ng-container matColumnDef="countdown">
     <th mat-header-cell *matHeaderCellDef> Nedtælling </th>
-    <td mat-cell *matCellDef="let element;"><div *ngIf="element.timestamp < nowTime">Tak for kage.</div><countdown *ngIf="element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!d!:$!h!:$!m!:$!s!'}"></countdown></td>
+    <td mat-cell *matCellDef="let element;">
+      <div *ngIf="(element.timestamp - nowTime) >= 3600000*24">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amTimeAgo }}</div>
+      <countdown *ngIf="(element.timestamp - nowTime) < 3600000*24 && element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!h!:$!m!:$!s!$!s-ext!'}"></countdown>
+      <div *ngIf="element.timestamp < nowTime">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amTimeAgo }}</div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="claps">

@@ -13,9 +13,9 @@ const cal = ical({
 Cake.find({}).exec(function (err, cakes) {
   cakes.forEach(function(cake) {
     cal.createEvent({
-      start: moment(cake.date),
-      end: moment(cake.date).add(15, 'minutes'),
-      timestamp: moment(cake.date),
+      start: moment.unix(cake.timestamp),
+      end: moment.unix(cake.timestamp).add(15, 'minutes'),
+      timestamp: moment.unix(cake.timestamp),
       summary: cake.cake + ' (' + cake.initials + ')',
       description: cake.initials + ' giver ' + cake.cake,
       organizer: cake.initials + ' <' + cake.initials + '@terma.com>',
