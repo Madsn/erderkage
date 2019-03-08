@@ -26,6 +26,14 @@ function createCake (req, res) {
   }, timeout)
 }
 
+function likeCake (req, res) {
+  setTimeout(() => {
+    Cake.findByIdAndUpdate({_id: req.body._id }, { $inc: { claps: 1 } })
+      .then((cake) => res.status(200).json(cake))
+      .catch((err) => res.status(404).send())
+  }, timeout)
+}
+
 function readCakes (req, res) {
   setTimeout(() => {
     Cake.find({}).sort({'timestamp': 'desc'})
@@ -68,6 +76,7 @@ function getUpcoming (req, res) {
 
 module.exports = {
   createCake,
+  likeCake,
   readCakes,
   updateCake,
   deleteCake,

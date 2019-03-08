@@ -32,6 +32,7 @@ export class CakesComponent implements OnInit, OnDestroy {
     { def: 'cake', showMobile: true },
     { def: 'timestamp', showMobile: false },
     { def: 'countdown', showMobile: true },
+    { def: 'claps', showMobile: false },
     { def: 'options', showMobile: true }
   ];
 
@@ -73,6 +74,11 @@ export class CakesComponent implements OnInit, OnDestroy {
       });
   }
 
+  incrementClaps(cake: Cake) {
+    cake.claps += 1;
+    this.apiService.likeCake(cake);
+  }
+
   ngOnDestroy(): void {
     this.createCakeSubscription.unsubscribe();
     this.updateCakeSubscription.unsubscribe();
@@ -87,6 +93,7 @@ export class Cake {
   date: string;
   time: string;
   timestamp?: string;
+  claps?: number;
 }
 
 export class Cakes {

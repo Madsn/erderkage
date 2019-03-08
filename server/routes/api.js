@@ -3,6 +3,7 @@ const router = express.Router();
 const cakes = require('../controllers/cakes');
 
 router.post('/cakes', cakes.createCake);
+router.post('/cakes/like', cakes.likeCake);
 router.get('/cakes', cakes.readCakes);
 router.put('/cakes', cakes.updateCake);
 router.delete('/cakes/:id', cakes.deleteCake);
