@@ -6,7 +6,7 @@ import {Cake} from '../models/common';
 @Component({
   selector: 'app-cake-dialog',
   templateUrl: './cake-dialog.component.html',
-  styleUrls: ['./cake-dialog.component.css']
+  styleUrls: ['./cake-dialog.component.scss']
 })
 export class CakeDialogComponent {
 

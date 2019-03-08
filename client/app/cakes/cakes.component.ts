@@ -10,7 +10,7 @@ import {Cake} from '../models/common';
 @Component({
   selector: 'app-cakes',
   templateUrl: './cakes.component.html',
-  styleUrls: ['./cakes.component.css']
+  styleUrls: ['./cakes.component.scss']
 })
 export class CakesComponent implements OnInit, OnDestroy {
 

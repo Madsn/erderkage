@@ -7,7 +7,7 @@ import {Highscore} from '../models/common';
 @Component({
   selector: 'app-highscore-dialog',
   templateUrl: './highscore-dialog.component.html',
-  styleUrls: ['./highscore-dialog.component.css']
+  styleUrls: ['./highscore-dialog.component.scss']
 })
 export class HighscoreDialogComponent implements OnDestroy {
 
