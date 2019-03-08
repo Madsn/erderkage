@@ -76,7 +76,7 @@ export class CakesComponent implements OnInit, OnDestroy {
 
   incrementClaps(cake: Cake) {
     cake.claps += 1;
-    this.apiService.updateCake(cake);
+    this.apiService.likeCake(cake);
   }
 
   ngOnDestroy(): void {

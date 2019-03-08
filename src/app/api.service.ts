@@ -63,6 +63,14 @@ export class ApiService {
       );
   }
 
+  likeCake(cake: Cake) {
+    return this.http.post<Cake>(`${this.url}/cakes/like`, cake)
+      .subscribe(
+        data => this.updateCakeSource.next(data),
+        err => console.log(err)
+      );
+  }
+
   getHighscores() {
     this.loadingSource.next(true);
     return this.http.get<Highscore[]>(`${this.url}/highscores`);
