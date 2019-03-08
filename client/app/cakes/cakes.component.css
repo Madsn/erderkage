@@ -13,3 +13,7 @@ th.mat-column-options td.mat-column-options {
   -khtml-user-select: none; /* webkit (konqueror) browsers */
   -ms-user-select: none; /* IE10+ */
 }
+
+.like-badge {
+  margin-top: 8px;
+}
