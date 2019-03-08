@@ -5,6 +5,7 @@ import {DataSource} from '@angular/cdk/collections';
 import {CakeDialogComponent} from '../cake-dialog/cake-dialog.component';
 import {MatDialog} from '@angular/material';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
+import {Cake} from '../models/common';
 
 @Component({
   selector: 'app-cakes',
@@ -86,16 +87,6 @@ export class CakesComponent implements OnInit, OnDestroy {
   }
 }
 
-export class Cake {
-  _id?: string;
-  initials: string;
-  cake: string;
-  date: string;
-  time: string;
-  timestamp?: string;
-  claps?: number;
-}
-
 export class Cakes {
   dataChange: BehaviorSubject<Cake[]> = new BehaviorSubject<Cake[]>([]);
   get data(): Cake[] { return this.dataChange.value; }
@@ -148,6 +139,5 @@ export class CakesDataSource extends DataSource<any> {
 
   disconnect() {
   }
-
 
 }

@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CakeDialogComponent } from '../cake-dialog/cake-dialog.component';
 import {ApiService} from '../api.service';
 import {Subscription} from 'rxjs';
-import {Cake} from '../cakes/cakes.component';
+import {Cake} from '../models/common';
 import {HighscoreDialogComponent} from '../highscore-dialog/highscore-dialog.component';
 import {CalendarDialogComponent} from "../calendar-dialog/calendar-dialog.component";
 
@@ -37,6 +37,6 @@ export class MainComponent {
   }
 
   openHighscoreDialog(): void {
-    const dialogRef = this.highscoreDialog.open(HighscoreDialogComponent);
+    const dialogRef = this.highscoreDialog.open(HighscoreDialogComponent, { width: '70%' });
   }
 }
