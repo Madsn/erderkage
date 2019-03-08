@@ -10,7 +10,7 @@ import {CalendarDialogComponent} from "../calendar-dialog/calendar-dialog.compon
 @Component({
   selector: 'app-root',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
 
