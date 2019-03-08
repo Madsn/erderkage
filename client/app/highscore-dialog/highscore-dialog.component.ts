@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {ApiService} from '../api.service';
 import {DataSource} from '@angular/cdk/table';
-import {CollectionViewer} from '@angular/cdk/collections';
+import {Highscore} from '../models/common';
 
 @Component({
   selector: 'app-highscore-dialog',
@@ -17,29 +17,37 @@ export class HighscoreDialogComponent implements OnDestroy {
   constructor(
     public apiService: ApiService
   ) {
-
+    this.highscores = new Highscores(this.apiService);
+    this.dataSource = new HighscoresDataSource(this.highscores);
   }
 
   ngOnDestroy(): void {
   }
 }
 
-export class Highscore {
-  _id?: string;
-  count: number;
-}
-
 export class Highscores {
+  dataChange: BehaviorSubject<Highscore[]> = new BehaviorSubject<Highscore[]>([]);
+  get data(): Highscore[] { return this.dataChange.value; }
 
+  constructor(private apiService: ApiService) {
+    this.apiService.getHighscores()
+      .subscribe((highscores) => {
+        this.dataChange.next(highscores);
+        this.apiService.loading(false);
+      });
+  }
 }
 
 export class HighscoresDataSource extends DataSource<any> {
-
-  connect(collectionViewer: CollectionViewer): Observable<any[] | ReadonlyArray<any>> {
-    return undefined;
+  constructor(private highscores: Highscores) {
+    super();
   }
 
-  disconnect(collectionViewer: CollectionViewer): void {
+  connect(): Observable<Highscore[]> {
+    return this.highscores.dataChange;
+  }
+
+  disconnect() {
   }
 
 }

@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {ApiService} from '../api.service';
-import {Cake} from '../cakes/cakes.component';
+import {Cake} from '../models/common';
 
 @Component({
   selector: 'app-cake-dialog',
