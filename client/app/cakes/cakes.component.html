@@ -10,25 +10,34 @@
 
   <ng-container matColumnDef="initials">
     <th mat-header-cell *matHeaderCellDef> Initialer </th>
-    <td mat-cell *matCellDef="let element"> {{element.initials}} </td>
+    <td mat-cell *matCellDef="let element">
+      <div *ngIf="element.timestamp > nowTime"> {{element.initials}} </div>
+      <div *ngIf="element.timestamp < nowTime" style="color: lightgray"> {{element.initials}} </div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="cake">
     <th mat-header-cell *matHeaderCellDef> Type </th>
-    <td mat-cell *matCellDef="let element"> {{element.cake}} </td>
+    <td mat-cell *matCellDef="let element">
+      <div *ngIf="element.timestamp > nowTime"> {{element.cake}} </div>
+      <div *ngIf="element.timestamp < nowTime" style="color: lightgray"> {{element.cake}} </div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="timestamp">
     <th mat-header-cell *matHeaderCellDef> Tidspunkt </th>
-    <td mat-cell *matCellDef="let element">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amDateFormat:'llll' }} </td>
+    <td mat-cell *matCellDef="let element">
+      <div *ngIf="element.timestamp > nowTime"> {{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amDateFormat:'llll' }} </div>
+      <div *ngIf="element.timestamp < nowTime" style="color: lightgray"> {{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amDateFormat:'llll' }} </div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="countdown">
     <th mat-header-cell *matHeaderCellDef> Nedtælling </th>
     <td mat-cell *matCellDef="let element;">
       <div *ngIf="(element.timestamp - nowTime) >= 3600000*24">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amTimeAgo }}</div>
-      <countdown *ngIf="(element.timestamp - nowTime) < 3600000*24 && element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!h!:$!m!:$!s!$!s-ext!'}" (finished)="setFireworks(true, element)"></countdown>
-      <div *ngIf="element.timestamp < nowTime">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amTimeAgo }}</div>
+      <countdown *ngIf="(element.timestamp - nowTime) < 3600000*24 && element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!h!:$!m!:$!s!$!s-ext!'}" (finished)="setFireworks(true, element)></countdown>
+      <div *ngIf="element.timestamp < nowTime" style="color: lightgray">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amTimeAgo }}</div>
     </td>
   </ng-container>
 
