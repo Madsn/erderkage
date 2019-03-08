@@ -1,5 +1,5 @@
 const ical = require('ical-generator');
-const Cake = require('../models/Cake');
+const Cake = require('../models/cake');
 const moment = require('moment');
 
 const cal = ical({

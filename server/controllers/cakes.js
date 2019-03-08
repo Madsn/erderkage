@@ -1,4 +1,4 @@
-const Cake = require('../models/Cake');
+const Cake = require('../models/cake');
 const ical = require('../controllers/ical');
 const moment = require('moment');
 
