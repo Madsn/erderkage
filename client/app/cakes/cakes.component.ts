@@ -45,6 +45,8 @@ export class CakesComponent implements OnInit, OnDestroy {
   dataSource: CakesDataSource;
   nowTime = new Date().getTime();
 
+  fireworks: boolean;
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
@@ -78,6 +80,10 @@ export class CakesComponent implements OnInit, OnDestroy {
   incrementClaps(cake: Cake) {
     cake.claps += 1;
     this.apiService.likeCake(cake);
+  }
+
+  setFireworks(state: boolean) {
+    this.fireworks = state;
   }
 
   ngOnDestroy(): void {
