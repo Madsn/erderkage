@@ -22,7 +22,8 @@ import {
   MatInputModule,
   MatProgressBarModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatBadgeModule
 } from '@angular/material';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { HighscoreDialogComponent } from './highscore-dialog/highscore-dialog.component';
@@ -55,6 +56,7 @@ registerLocaleData(localeDa, 'da');
     MatSnackBarModule,
     MatMenuModule,
     MatSortModule,
+    MatBadgeModule,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,

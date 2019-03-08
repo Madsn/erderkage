@@ -31,6 +31,10 @@ const CakeSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
+  },
+  claps: {
+    type: Number,
+    default: 0
   }
 });
 
