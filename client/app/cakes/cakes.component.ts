@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {ApiService} from '../api.service';
 import {DataSource} from '@angular/cdk/collections';
 import {CakeDialogComponent} from '../cake-dialog/cake-dialog.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {Cake} from '../models/common';
 
@@ -17,7 +17,8 @@ export class CakesComponent implements OnInit, OnDestroy {
   constructor(
     public apiService: ApiService,
     public cakeDialog: MatDialog,
-    public deleteDialog: MatDialog
+    public deleteDialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     this.cakes = new Cakes(this.apiService);
     this.dataSource = new CakesDataSource(this.cakes);
@@ -82,8 +83,13 @@ export class CakesComponent implements OnInit, OnDestroy {
     this.apiService.likeCake(cake);
   }
 
-  setFireworks(state: boolean) {
+  setFireworks(state: boolean, cake: Cake) {
     this.fireworks = state;
+    if (state) {
+      this.snackBar.open('Jubiiiii, nu giver ' + cake.initials + ' ' + cake.cake + ' !!!', 'x', {
+        duration: 60000,
+      });
+    }
   }
 
   ngOnDestroy(): void {

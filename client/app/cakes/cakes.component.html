@@ -27,7 +27,7 @@
     <th mat-header-cell *matHeaderCellDef> Nedtælling </th>
     <td mat-cell *matCellDef="let element;">
       <div *ngIf="(element.timestamp - nowTime) >= 3600000*24">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amTimeAgo }}</div>
-      <countdown *ngIf="(element.timestamp - nowTime) < 3600000*24 && element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!h!:$!m!:$!s!$!s-ext!'}" (finished)="setFireworks(true)"></countdown>
+      <countdown *ngIf="(element.timestamp - nowTime) < 3600000*24 && element.timestamp > nowTime" [config]="{stopTime: element.timestamp, template: '$!h!:$!m!:$!s!$!s-ext!'}" (finished)="setFireworks(true, element)"></countdown>
       <div *ngIf="element.timestamp < nowTime">{{ ((element.timestamp / 1000) | amFromUnix) | amLocale:'da' | amTimeAgo }}</div>
     </td>
   </ng-container>
@@ -46,7 +46,7 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="getDisplayedColumns(); sticky: true"></tr>
+  <tr mat-header-row *matHeaderRowDef="getDisplayedColumns();"></tr>
   <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
 
 </table>
