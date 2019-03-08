@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {Subject} from 'rxjs';
-import {Cake} from './cakes/cakes.component';
-import {Highscore} from './highscore-dialog/highscore-dialog.component';
+import {Cake, Highscore} from './models/common';
 
 @Injectable({
   providedIn: 'root'

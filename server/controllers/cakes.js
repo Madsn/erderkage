@@ -61,6 +61,8 @@ function deleteCake (req, res) {
 function getHighscores (req, res) {
   setTimeout(() => {
     Cake.aggregate([ {$group : { _id : '$initials', count : {$sum : 1}}} ])
+      .sort({'count': 'desc'})
+      .limit(5)
       .then((count) => res.status(200).json(count))
       .catch((err) => res.status(404).send())
   }, timeout)
