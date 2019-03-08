@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {Cake} from '../cakes/cakes.component';
 import {HighscoreDialogComponent} from '../highscore-dialog/highscore-dialog.component';
 import {versionInfo} from '../version-info';
+import {CalendarDialogComponent} from "../calendar-dialog/calendar-dialog.component";
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class MainComponent {
   constructor(
     public cakeDialog: MatDialog,
     public highscoreDialog: MatDialog,
+    public calendarDialog: MatDialog,
     public apiService: ApiService) {
     this.loadingSubscription = this.apiService.onLoading$.subscribe((status) => setTimeout(() => this.loading = status, 0));
     this.gitHash = versionInfo.hash;
@@ -32,6 +34,9 @@ export class MainComponent {
 
   openCakeDialog(): void {
     const dialogRef = this.cakeDialog.open(CakeDialogComponent, {data: {isNew: true, cake: new Cake()}});
+  }
+  openCalendarDialog(): void {
+    const dialogRef = this.calendarDialog.open(CalendarDialogComponent);
   }
 
   openHighscoreDialog(): void {

@@ -26,6 +26,7 @@ import {
 } from '@angular/material';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { HighscoreDialogComponent } from './highscore-dialog/highscore-dialog.component';
+import { CalendarDialogComponent } from './calendar-dialog/calendar-dialog.component';
 
 registerLocaleData(localeDa, 'da');
 
@@ -35,12 +36,14 @@ registerLocaleData(localeDa, 'da');
     CakeDialogComponent,
     CakesComponent,
     DeleteDialogComponent,
-    HighscoreDialogComponent
+    HighscoreDialogComponent,
+    CalendarDialogComponent
   ],
   entryComponents: [
     CakeDialogComponent,
     DeleteDialogComponent,
-    HighscoreDialogComponent
+    HighscoreDialogComponent,
+    CalendarDialogComponent
   ],
   imports: [
     BrowserModule,
